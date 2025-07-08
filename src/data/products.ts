@@ -6,7 +6,7 @@ export const products: Product[] = [
     title: 'Camiseta Oficial',
     slug: 'camiseta-oficial',
     price: 129.9,
-    image: '/products/camiseta.jpg',
+    image: '/img/products/camiseta.jpg',
     description: 'Camiseta confortável para ciclismo urbano.'
   },
   {
@@ -14,7 +14,7 @@ export const products: Product[] = [
     title: 'Bermuda Esportiva',
     slug: 'bermuda-esportiva',
     price: 159.9,
-    image: '/products/bermuda.jpg',
+    image: '/img/products/bermuda.jpg',
     description: 'Bermuda leve e resistente para pedaladas longas.'
   },
   {
@@ -22,7 +22,7 @@ export const products: Product[] = [
     title: 'Jaqueta Corta Vento',
     slug: 'jaqueta-corta-vento',
     price: 199.9,
-    image: '/products/jaqueta.jpg',
+    image: '/img/products/jaqueta.jpg',
     description: 'Jaqueta impermeável, ideal para dias chuvosos.'
   },
   {
@@ -30,7 +30,7 @@ export const products: Product[] = [
     title: 'Luva de Ciclismo',
     slug: 'luva-ciclismo',
     price: 49.9,
-    image: '/products/luva.jpg',
+    image: '/img/products/luva.jpg',
     description: 'Luva com proteção e conforto para as mãos.'
   },
   {
@@ -38,7 +38,7 @@ export const products: Product[] = [
     title: 'Garrafa Térmica',
     slug: 'garrafa-termica',
     price: 39.9,
-    image: '/products/garrafa.jpg',
+    image: '/img/products/garrafa.jpg',
     description: 'Garrafa térmica para manter sua bebida na temperatura ideal.'
   },
   {
@@ -46,7 +46,7 @@ export const products: Product[] = [
     title: 'Meia Esportiva',
     slug: 'meia-esportiva',
     price: 19.9,
-    image: '/products/meia.jpg',
+    image: '/img/products/meia.jpg',
     description: 'Meia confortável e respirável para ciclismo.'
   }
 ]; 

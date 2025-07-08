@@ -1,54 +1,31 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1e3a8a', // Azul escuro
-          light: '#3b82f6',
-          dark: '#1e293b',
-        },
-        secondary: {
-          DEFAULT: '#64748b', // Cinza neutro
-          light: '#cbd5e1',
-          dark: '#334155',
+          DEFAULT: '#001F3F', // Header escuro
         },
         accent: {
-          DEFAULT: '#facc15', // Amarelo para CTA
-          dark: '#ca8a04',
+          DEFAULT: '#FFC300', // Amarelo vibrante
         },
         background: {
-          DEFAULT: '#f9fafb', // Fundo claro
-          dark: '#111827',
+          DEFAULT: '#FFFFFF', // Fundo claro
+          dark: '#001F3F',   // Futuro: fundo escuro
         },
-        text: {
-          DEFAULT: '#1e293b', // Texto escuro
-          light: '#f1f5f9',
+        foreground: {
+          DEFAULT: '#1A1A1A', // Texto principal
+          dark: '#FFFFFF',    // Futuro: texto claro
+        },
+        muted: {
+          DEFAULT: '#F3F4F6', // Cinza claro para divisores, etc
+          dark: '#222F3E',
         },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-      },
-      fontWeight: {
-        normal: 400,
-        semibold: 600,
-        bold: 700,
-      },
-      spacing: {
-        1: '4px',
-        2: '8px',
-        3: '12px',
-        4: '16px',
-        6: '24px',
-        8: '32px',
-      },
-      fontSize: {
-        sm: ['0.875rem', { lineHeight: '1.25rem' }],
-        base: ['1rem', { lineHeight: '1.5rem' }],
-        lg: ['1.125rem', { lineHeight: '1.75rem' }],
-        xl: ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
       },
       borderRadius: {
         DEFAULT: '0.5rem', // 8px
@@ -56,8 +33,8 @@ module.exports = {
         full: '9999px',
       },
       boxShadow: {
-        card: '0 2px 8px 0 rgba(30, 58, 138, 0.08)',
-        button: '0 1px 3px 0 rgba(250, 204, 21, 0.15)',
+        card: '0 2px 8px 0 rgba(0, 31, 63, 0.08)',
+        button: '0 1px 3px 0 rgba(255, 195, 0, 0.15)',
       },
       transitionProperty: {
         DEFAULT: 'all',
@@ -70,15 +47,9 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
-  ],
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}"
   ],
 }

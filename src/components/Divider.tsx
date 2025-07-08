@@ -5,7 +5,7 @@ interface DividerProps {
 }
 
 const Divider = ({ className = '' }: DividerProps) => (
-  <hr className={`border-t border-neutral-200 my-8 ${className}`} />
+  <hr className={`border-t border-muted my-8 ${className}`} aria-label="Divisor de sessão" />
 );
 
 export default Divider; 

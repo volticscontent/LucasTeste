@@ -7,22 +7,22 @@ const equipe = [
   {
     nome: 'Ana Silva',
     cargo: 'Fundadora & CEO',
-    foto: '/team/ana.jpg',
+    foto: '/img/team/ana.jpg',
   },
   {
     nome: 'Carlos Souza',
     cargo: 'CTO & Engenheiro de Produto',
-    foto: '/team/carlos.jpg',
+    foto: '/img/team/carlos.jpg',
   },
   {
     nome: 'Marina Oliveira',
     cargo: 'Marketing & Comunidade',
-    foto: '/team/marina.jpg',
+    foto: '/img/team/marina.jpg',
   },
   {
     nome: 'João Pereira',
     cargo: 'Designer & UX',
-    foto: '/team/joao.jpg',
+    foto: '/img/team/joao.jpg',
   },
 ];
 
@@ -46,7 +46,7 @@ const About: NextPage = () => {
           </div>
           <div className="flex-1 flex justify-center">
             <Image
-              src="/about1.jpg"
+              src="/img/about1.jpg"
               alt="Equipe Power House Brasil pedalando na cidade"
               width={400}
               height={300}
@@ -57,7 +57,7 @@ const About: NextPage = () => {
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
           <div className="flex-1 flex justify-center order-2 md:order-1">
             <Image
-              src="/about2.jpg"
+              src="/img/about2.jpg"
               alt="Loja e comunidade Power House Brasil"
               width={400}
               height={300}

@@ -7,7 +7,7 @@ export type ButtonPrimaryProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const ButtonPrimary = ({ children, className = '', ...props }: ButtonPrimaryProps) => (
   <button
-    className={`bg-primary text-white font-bold px-6 py-3 rounded shadow-button transition duration-300 ease-in-out hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${className}`}
+    className={`bg-accent text-foreground font-bold px-6 py-3 rounded-full shadow-button transition-all duration-300 ease-in-out hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
     tabIndex={0}
     aria-label="Botão primário"
     {...props}
