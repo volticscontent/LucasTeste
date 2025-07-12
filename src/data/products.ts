@@ -7,7 +7,8 @@ export const products: Product[] = [
     slug: 'camiseta-oficial',
     price: 129.9,
     image: '/img/products/camiseta.jpg',
-    description: 'Camiseta confortável para ciclismo urbano.'
+    description: 'Camiseta confortável para ciclismo urbano.',
+    category: 'Vestuário'
   },
   {
     id: 'bermuda1',
@@ -15,7 +16,8 @@ export const products: Product[] = [
     slug: 'bermuda-esportiva',
     price: 159.9,
     image: '/img/products/bermuda.jpg',
-    description: 'Bermuda leve e resistente para pedaladas longas.'
+    description: 'Bermuda leve e resistente para pedaladas longas.',
+    category: 'Vestuário'
   },
   {
     id: 'jaqueta1',
@@ -23,7 +25,8 @@ export const products: Product[] = [
     slug: 'jaqueta-corta-vento',
     price: 199.9,
     image: '/img/products/jaqueta.jpg',
-    description: 'Jaqueta impermeável, ideal para dias chuvosos.'
+    description: 'Jaqueta impermeável, ideal para dias chuvosos.',
+    category: 'Vestuário'
   },
   {
     id: 'luva1',
@@ -31,7 +34,8 @@ export const products: Product[] = [
     slug: 'luva-ciclismo',
     price: 49.9,
     image: '/img/products/luva.jpg',
-    description: 'Luva com proteção e conforto para as mãos.'
+    description: 'Luva com proteção e conforto para as mãos.',
+    category: 'Acessórios'
   },
   {
     id: 'garrafa1',
@@ -39,7 +43,8 @@ export const products: Product[] = [
     slug: 'garrafa-termica',
     price: 39.9,
     image: '/img/products/garrafa.jpg',
-    description: 'Garrafa térmica para manter sua bebida na temperatura ideal.'
+    description: 'Garrafa térmica para manter sua bebida na temperatura ideal.',
+    category: 'Acessórios'
   },
   {
     id: 'meia1',
@@ -47,6 +52,7 @@ export const products: Product[] = [
     slug: 'meia-esportiva',
     price: 19.9,
     image: '/img/products/meia.jpg',
-    description: 'Meia confortável e respirável para ciclismo.'
+    description: 'Meia confortável e respirável para ciclismo.',
+    category: 'Vestuário'
   }
 ]; 
