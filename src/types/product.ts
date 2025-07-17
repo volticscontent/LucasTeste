@@ -1,9 +1,10 @@
 export interface Product {
-  id: string;
+  _id: string;
+  id?: string; // compatibilidade com produtos mockados
   title: string;
-  slug: string;
-  image: string;
+  slug: string | { current: string };
+  image?: any;
   price: number;
-  description: string;
   category: string;
+  description: string;
 } 

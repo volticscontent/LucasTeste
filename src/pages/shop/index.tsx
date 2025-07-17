@@ -1,11 +1,26 @@
 import ProductCard from '../../components/ProductCard';
-import { products } from '../../data/products';
 import Seo from '../../components/Seo';
 import SidebarFilter from '../../components/SidebarFilter';
 import React from 'react';
 import ButtonPrimary from '../../components/ButtonPrimary';
+import { GetStaticProps } from 'next';
+import { getAllProducts } from '../../lib/sanity';
 
-const ShopIndex = () => {
+interface Product {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  image?: any;
+  price: number;
+  category: string;
+  description: string;
+}
+
+interface ShopIndexProps {
+  products: Product[];
+}
+
+const ShopIndex = ({ products }: ShopIndexProps) => {
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
   const filteredProducts = selectedCategory
@@ -40,11 +55,11 @@ const ShopIndex = () => {
               ) : (
                 filteredProducts.map((product) => (
                   <ProductCard
-                    key={product.id}
+                    key={product._id}
                     title={product.title}
-                    image={product.image}
+                    image={product.image?.asset?.url || ''}
                     price={product.price}
-                    slug={product.slug}
+                    slug={product.slug.current}
                   />
                 ))
               )}
@@ -54,6 +69,14 @@ const ShopIndex = () => {
       </div>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const products = await getAllProducts();
+  return {
+    props: { products },
+    revalidate: 60,
+  };
 };
 
 export default ShopIndex; 

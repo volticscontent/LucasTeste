@@ -1,13 +1,22 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
-import { products } from '../../data/products';
-import type { Product } from '../../types/product';
+import { getAllProducts, getProductBySlug } from '../../lib/sanity';
 import { useCart } from '../../lib/useCart';
 import Seo from '../../components/Seo';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import ProductCard from '../../components/ProductCard';
 import Link from 'next/link';
 import { useState } from 'react';
+
+interface Product {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  image?: any;
+  price: number;
+  category: string;
+  description: string;
+}
 
 interface ProductPageProps {
   product: Product;
@@ -24,13 +33,13 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
     setTimeout(() => setAdded(false), 2000);
   };
   const description = product.description.slice(0, 160);
-  const url = `https://powerhousebrasil.com.br/shop/${product.slug}`;
+  const url = `https://powerhousebrasil.com.br/shop/${product.slug.current}`;
   return (
     <>
       <Seo
         title={product.title}
         description={description}
-        image={product.image}
+        image={product.image?.asset?.url || ''}
         url={url}
       />
       <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -38,7 +47,7 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
         <div className="w-full flex justify-center">
           <div className="relative w-full aspect-video max-w-md rounded-xl shadow-lg overflow-hidden">
             <Image
-              src={product.image}
+              src={product.image?.asset?.url || ''}
               alt={product.title}
               fill
               className="object-cover object-center"
@@ -71,11 +80,11 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {related.map((item) => (
               <ProductCard
-                key={item.id}
+                key={item._id}
                 title={item.title}
-                image={item.image}
+                image={item.image?.asset?.url || ''}
                 price={item.price}
-                slug={item.slug}
+                slug={item.slug.current}
               />
             ))}
           </div>
@@ -91,18 +100,20 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = products.map((product) => ({
-    params: { slug: product.slug },
+  const products = await getAllProducts();
+  const paths = products.map((product: Product) => ({
+    params: { slug: product.slug.current },
   }));
   return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as { slug: string };
-  const product = products.find((p) => p.slug === slug) || null;
+  const product = await getProductBySlug(slug);
   if (!product) return { notFound: true };
-  // Selecionar até 3 produtos relacionados (mock)
-  const related = products.filter((p) => p.slug !== slug).slice(0, 3);
+  // Selecionar até 3 produtos relacionados (excluindo o atual)
+  const allProducts = await getAllProducts();
+  const related = allProducts.filter((p: Product) => p.slug.current !== slug).slice(0, 3);
   return {
     props: { product, related },
     revalidate: 60,

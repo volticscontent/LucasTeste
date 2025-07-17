@@ -1,5 +1,4 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
 import Seo from '../components/Seo';
 import { ShieldCheck, Bike, Heart } from 'lucide-react';
 import ButtonPrimary from '../components/ButtonPrimary';
@@ -26,7 +25,7 @@ const planos = [
 
 const Planos = () => {
   return (
-    <PageLayout>
+    <>
       <Seo title="Planos | Power House Brasil" description="Conheça nossos planos de saúde e performance para ciclistas. Escolha o ideal para você!" />
       <section className="max-w-5xl mx-auto px-4 py-12">
         <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Planos</h1>
@@ -51,7 +50,7 @@ const Planos = () => {
           ))}
         </div>
       </section>
-    </PageLayout>
+    </>
   );
 };
 

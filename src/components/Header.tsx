@@ -10,10 +10,8 @@ const navLinks = [
     { href: '/planos', label: 'Planos' },
   ] },
   { href: '/powercamps', label: 'PowerCamps' },
-  { href: '/quem-e-o-time', label: 'Quem é o Time' },
   { href: '/planos', label: 'Planos' },
-  { href: '/powercamps', label: 'PowerCamps' },
-  { href: '/shop/compre-agora', label: 'Loja' },
+  { href: '/shop', label: 'Loja' },
   { href: '/blog', label: 'Blog' },
 ];
 
@@ -68,12 +66,12 @@ const Header = () => {
             >
               <Link
                 href="/"
-                className="flex items-center text-blue-900 hover:text-blue-700 transition-colors font-semibold px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
+                className="flex items-center text-black hover:text-blue-700 transition-colors font-semibold px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
                 tabIndex={0}
                 aria-label="Home"
               >
                 Home
-                <ChevronDown className="w-4 h-4 ml-1 text-blue-900" aria-hidden="true" />
+                <ChevronDown className="w-4 h-4 ml-1 text-black" aria-hidden="true" />
               </Link>
               {/* Dropdown */}
               <div
@@ -83,7 +81,7 @@ const Header = () => {
               >
                 <Link
                   href="/coaches"
-                  className="block px-4 py-2 text-sm text-blue-900 hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
+                  className="block px-4 py-2 text-black hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
                   tabIndex={homeDropdownOpen ? 0 : -1}
                   role="menuitem"
                 >
@@ -91,7 +89,7 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/planos"
-                  className="block px-4 py-2 text-sm text-blue-900 hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
+                  className="block px-4 py-2 text-black hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
                   tabIndex={homeDropdownOpen ? 0 : -1}
                   role="menuitem"
                 >
@@ -104,7 +102,7 @@ const Header = () => {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-blue-900 hover:text-blue-700 transition-colors font-semibold px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
+                  className="text-black hover:text-blue-700 transition-colors font-semibold px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
                   tabIndex={0}
                   aria-label={link.label}
                 >
@@ -163,19 +161,19 @@ const Header = () => {
               <div className="flex items-center">
                 <Link
                   href="/"
-                  className="flex items-center text-blue-900 hover:text-blue-700 transition-colors font-semibold px-2 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
+                  className="flex items-center text-black hover:text-blue-700 transition-colors font-semibold px-2 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
                   tabIndex={0}
                   aria-label="Home"
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
-                  <ChevronDown className="w-4 h-4 ml-1 text-blue-900" aria-hidden="true" />
+                  <ChevronDown className="w-4 h-4 ml-1 text-black" aria-hidden="true" />
                 </Link>
               </div>
               <div className="ml-6 mt-1 flex flex-col gap-1">
                 <Link
                   href="/coaches"
-                  className="block px-4 py-2 text-sm text-blue-900 bg-white hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
+                  className="block px-4 py-2 text-black bg-white hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
                   tabIndex={0}
                   role="menuitem"
                   onClick={() => setMenuOpen(false)}
@@ -184,7 +182,7 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/planos"
-                  className="block px-4 py-2 text-sm text-blue-900 bg-white hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
+                  className="block px-4 py-2 text-black bg-white hover:bg-yellow-100 hover:text-blue-700 focus:bg-yellow-100 focus:text-blue-700 transition-colors rounded"
                   tabIndex={0}
                   role="menuitem"
                   onClick={() => setMenuOpen(false)}
@@ -198,7 +196,7 @@ const Header = () => {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block text-blue-900 hover:text-blue-700 transition-colors font-semibold px-2 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
+                  className="block text-black hover:text-blue-700 transition-colors font-semibold px-2 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:ring-offset-yellow-400"
                   tabIndex={0}
                   aria-label={link.label}
                   onClick={() => setMenuOpen(false)}

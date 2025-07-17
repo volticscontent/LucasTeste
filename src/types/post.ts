@@ -1,9 +1,10 @@
 export interface Post {
-  id: string;
+  _id: string;
+  id?: string; // compatibilidade
   title: string;
-  slug: string;
-  coverImage: string;
-  date: string;
-  author: string;
-  body: string;
+  slug: string | { current: string };
+  mainImage?: any;
+  author?: { name: string } | string;
+  publishedAt?: string;
+  body: any;
 } 
