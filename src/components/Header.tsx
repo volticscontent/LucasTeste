@@ -44,13 +44,13 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 bg-yellow-400 shadow-md border-b border-yellow-400`}
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 bg-yellow-400 shadow-md border-b border-yellow-400 h-24`}
       tabIndex={-1}
       aria-label="Cabeçalho do site"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 h-14 md:h-16">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 h-20 md:h-24">
         <Link href="/" className="flex items-center" tabIndex={0} aria-label="Power House Brasil">
-          <Image src="/img/static/logo.png" alt="Logo Power House Brasil" width={56} height={56} className="rounded-full" priority />
+          <Image src="/img/static/logo.jpg" alt="Logo Power House Brasil" width={100} height={100} className="rounded-full" priority />
         </Link>
         {/* Desktop nav */}
         <nav className="hidden md:block">

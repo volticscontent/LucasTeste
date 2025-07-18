@@ -19,7 +19,7 @@ const trustItems = [
 const TrustBar: React.FC = () => {
   return (
     <div
-      className="w-full bg-yellow-100 text-blue-900 text-sm py-2 px-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 border-b border-yellow-200 shadow-sm"
+      className="w-full bg-yellow-100 text-blue-900 text-sm py-2 px-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 border-b border-yellow-200 shadow-sm fixed top-24 left-0 z-40"
       role="region"
       aria-label="Informações de segurança e promoções"
     >

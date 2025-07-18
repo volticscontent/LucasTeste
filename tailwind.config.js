@@ -9,7 +9,7 @@ module.exports = {
           DEFAULT: '#000000', // Preto absoluto para header e elementos principais
         },
         accent: {
-          DEFAULT: '#FFC300', // Amarelo vibrante
+          DEFAULT: '#fed801', // Amarelo vibrante
         },
         background: {
           DEFAULT: '#FFFFFF', // Fundo branco
@@ -31,7 +31,7 @@ module.exports = {
       },
       boxShadow: {
         card: '0 2px 8px 0 rgba(0,0,0,0.08)',
-        button: '0 1px 3px 0 rgba(255, 195, 0, 0.15)',
+        button: '0 1px 3px 0 rgba(254, 216, 1, 0.15)',
       },
       transitionProperty: {
         DEFAULT: 'all',
