@@ -26,7 +26,7 @@ const planos = [
 
 const containerVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut', when: 'beforeChildren', staggerChildren: 0.12 } },
+  visible: { opacity: 1, y: 0 },
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -42,6 +42,7 @@ const Planos = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], when: 'beforeChildren', staggerChildren: 0.12 }}
       >
         <motion.h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           Planos
@@ -49,7 +50,11 @@ const Planos = () => {
         <motion.p className="text-lg text-[#1a1a1a] mb-10 max-w-2xl" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
           Escolha o plano ideal para sua jornada no ciclismo. Todos os planos incluem acesso à comunidade Power House Brasil.
         </motion.p>
-        <motion.div className="flex flex-col md:flex-row gap-8 justify-center" variants={containerVariants}>
+        <motion.div 
+          className="flex flex-col md:flex-row gap-8 justify-center" 
+          variants={containerVariants}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], when: 'beforeChildren', staggerChildren: 0.12 }}
+        >
           {planos.map((plano) => (
             <motion.div key={plano.nome} className="bg-white rounded-2xl shadow-md p-8 flex-1 flex flex-col items-start border border-yellow-100 min-w-[260px] max-w-md mx-auto" variants={cardVariants} whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }} whileFocus={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }} tabIndex={0} aria-label={`Card do plano ${plano.nome}`}>
               <h2 className="text-xl font-semibold text-blue-900 mb-2">{plano.nome}</h2>
