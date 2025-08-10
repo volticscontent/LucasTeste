@@ -13,8 +13,7 @@ const CartItem = ({ product, onRemove }: CartItemProps) => (
         src={product.image}
         alt={product.title}
         fill
-        className="object-cover rounded"
-        sizes="80px"
+        className="rounded-lg object-cover"
       />
     </div>
     <div className="flex-1">
@@ -24,7 +23,7 @@ const CartItem = ({ product, onRemove }: CartItemProps) => (
     </div>
     <button
       className="ml-4 text-red-600 hover:text-red-800 font-bold text-xl"
-      onClick={() => onRemove(product.id)}
+      onClick={() => onRemove(product.id || product._id)}
       aria-label={`Remover ${product.title} do carrinho`}
       tabIndex={0}
     >
