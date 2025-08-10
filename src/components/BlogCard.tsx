@@ -48,7 +48,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
               console.error('Failed URL:', imageUrl);
             }}
             onLoad={() => {
-              console.log('Image loaded successfully:', imageUrl);
+              console.log('✅ Image loaded successfully:', imageUrl);
             }}
           />
         </div>
