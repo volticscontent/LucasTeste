@@ -38,15 +38,15 @@ const Planos = () => {
     <>
       <Seo title="Planos | Power House Brasil" description="Conheça nossos planos de saúde e performance para ciclistas. Escolha o ideal para você!" />
       <motion.section
-        className="max-w-5xl mx-auto px-4 py-12"
+        className="max-w-5xl mx-auto px-4 py-12 pt-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+        <motion.h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           Planos
         </motion.h1>
-        <motion.p className="text-lg text-blue-900 mb-10 max-w-2xl" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
+        <motion.p className="text-lg text-[#1a1a1a] mb-10 max-w-2xl" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
           Escolha o plano ideal para sua jornada no ciclismo. Todos os planos incluem acesso à comunidade Power House Brasil.
         </motion.p>
         <motion.div className="flex flex-col md:flex-row gap-8 justify-center" variants={containerVariants}>

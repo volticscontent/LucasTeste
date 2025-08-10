@@ -38,7 +38,7 @@ const CheckoutPage: NextPage = () => {
         title="Finalizar Compra"
         description="Revise seus itens antes de finalizar a compra na Power House Brasil."
       />
-      <div className="max-w-4xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-4xl mx-auto px-4 py-12 pt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Itens do carrinho */}
         <div>
           <h1 className="text-2xl font-bold text-primary mb-6">Seu Carrinho</h1>

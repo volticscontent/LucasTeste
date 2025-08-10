@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import { getAllProducts, getProductBySlug } from '../../lib/sanity';
+import { urlFor } from '../../lib/sanityImage';
+import { getDescriptionText, getTruncatedDescription } from '../../lib/textUtils';
 import { useCart } from '../../lib/useCart';
 import Seo from '../../components/Seo';
 import ButtonPrimary from '../../components/ButtonPrimary';
@@ -15,7 +17,7 @@ interface Product {
   image?: any;
   price: number;
   category: string;
-  description: string;
+  description: string | any;
 }
 
 interface ProductPageProps {
@@ -27,19 +29,26 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
   if (!product) return <div className="text-center py-16">Produto não encontrado.</div>;
+  
   const handleAddToCart = () => {
     addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
-  const description = product.description.slice(0, 160);
+  
+  const descriptionText = getDescriptionText(product.description);
+  const description = getTruncatedDescription(product.description, 160);
   const url = `https://powerhousebrasil.com.br/shop/${product.slug.current}`;
+  
+  // Generate image URLs using urlFor
+  const imageUrl = product.image ? urlFor(product.image).width(800).height(600).url() : '/img/placeholder.jpg';
+  
   return (
     <>
       <Seo
         title={product.title}
         description={description}
-        image={product.image?.asset?.url || ''}
+        image={imageUrl}
         url={url}
       />
       <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -47,7 +56,7 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
         <div className="w-full flex justify-center">
           <div className="relative w-full aspect-video max-w-md rounded-xl shadow-lg overflow-hidden">
             <Image
-              src={product.image?.asset?.url || ''}
+              src={imageUrl}
               alt={product.title}
               fill
               className="object-cover object-center"
@@ -59,8 +68,8 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
         {/* Detalhes do produto */}
         <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-bold text-primary mb-2">{product.title}</h1>
-          <span className="text-2xl text-accent font-semibold">R$ {product.price.toFixed(2)}</span>
-          <p className="text-neutral-700 text-lg leading-relaxed">{product.description}</p>
+          <span className="text-2xl text-green-600 font-semibold">R$ {product.price.toFixed(2)}</span>
+          <p className="text-neutral-700 text-lg leading-relaxed">{descriptionText}</p>
           <ButtonPrimary
             className="mt-4 w-full md:w-auto"
             onClick={handleAddToCart}
@@ -82,9 +91,10 @@ const ProductPage = ({ product, related }: ProductPageProps) => {
               <ProductCard
                 key={item._id}
                 title={item.title}
-                image={item.image?.asset?.url || ''}
+                image={item.image ? urlFor(item.image).width(400).height(300).url() : '/img/placeholder.jpg'}
                 price={item.price}
                 slug={item.slug.current}
+                description={item.description}
               />
             ))}
           </div>

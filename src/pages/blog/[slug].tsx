@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllPosts, getPostBySlug } from '../../lib/sanity';
-import { urlFor } from '../../lib/sanityImage';
+import { urlFor, getImageUrl } from '../../lib/sanityImage';
 import type { Post } from '../../types/post';
 import Seo from '../../components/Seo';
 import ButtonPrimary from '../../components/ButtonPrimary';
@@ -15,7 +15,7 @@ interface BlogPostProps {
 
 const containerVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0 },
 };
 
 const BlogPost = ({ post }: BlogPostProps) => {
@@ -25,29 +25,40 @@ const BlogPost = ({ post }: BlogPostProps) => {
     ? post.body.replace(/<[^>]+>/g, '').slice(0, 160)
     : '';
   const url = `https://powerhousebrasil.com.br/blog/${getSlugString(post.slug)}`;
+  
+  // Gerar URL da imagem com a função melhorada
+  const imageUrl = getImageUrl(post.mainImage, 1200, 525);
+  
   return (
     <>
       <Seo
         title={post.title}
         description={description}
-        image={post.mainImage ? urlFor(post.mainImage).width(800).height(400).url() : undefined}
+        image={imageUrl || undefined}
         url={url}
       />
       <motion.article
-        className="max-w-3xl mx-auto bg-white rounded-xl shadow-card p-4 md:p-10 mt-8 mb-16"
+        className="max-w-3xl mx-auto rounded-xl p-4 md:p-10 mt-20 mb-16"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {post.mainImage && (
+        {imageUrl && (
           <motion.div className="relative w-full aspect-[16/7] rounded-xl overflow-hidden mb-8" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7 }}>
             <Image
-              src={urlFor(post.mainImage).width(1200).height(525).url()}
+              src={imageUrl}
               alt={post.title}
               fill
               className="object-cover object-center"
               sizes="(max-width: 768px) 100vw, 70vw"
               priority
+              onError={(e) => {
+                console.error('Image failed to load on blog post:', e);
+                console.error('Failed URL:', imageUrl);
+              }}
+              onLoad={() => {
+                console.log('Blog post image loaded successfully:', imageUrl);
+              }}
             />
           </motion.div>
         )}

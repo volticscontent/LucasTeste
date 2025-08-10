@@ -12,7 +12,7 @@ const ButtonPrimary = ({ children, className = '', as = 'button', href, ...props
     return (
       <a
         href={href}
-        className={`bg-accent text-foreground font-bold px-6 py-3 rounded-full shadow-button transition-all duration-300 ease-in-out hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
+        className={`bg-black text-white font-bold px-6 py-3 rounded-full shadow-button transition-all duration-300 ease-in-out hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-background active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
         tabIndex={0}
         aria-label="Botão primário"
         {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
@@ -23,7 +23,7 @@ const ButtonPrimary = ({ children, className = '', as = 'button', href, ...props
   }
   return (
     <button
-      className={`bg-accent text-foreground font-bold px-6 py-3 rounded-full shadow-button transition-all duration-300 ease-in-out hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
+      className={`bg-black text-white font-bold px-6 py-3 rounded-full shadow-button transition-all duration-300 ease-in-out hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-background active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
       tabIndex={0}
       aria-label="Botão primário"
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}

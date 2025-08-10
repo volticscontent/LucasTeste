@@ -20,7 +20,7 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({ selectedCategory, handleS
           {({ open }: { open: boolean }) => (
             <>
               <Disclosure.Button
-                className="flex items-center justify-between w-full px-4 py-2 bg-yellow-100 text-blue-900 font-semibold rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-900"
+                className="flex items-center justify-between w-full px-4 py-2 bg-yellow-100 text-black  font-semibold rounded shadow focus:outline-none focus:ring-2"
                 aria-label="Abrir filtro de categorias"
               >
                 Categorias
@@ -30,7 +30,7 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({ selectedCategory, handleS
                 <ul className="flex flex-col gap-2">
                   <li>
                     <button
-                      className={`w-full text-left px-3 py-2 rounded font-medium transition-colors ${selectedCategory === null ? 'bg-yellow-400 text-blue-900' : 'hover:bg-yellow-100 text-blue-900'}`}
+                      className={`w-full text-left px-3 py-2 rounded font-medium transition-colors ${selectedCategory === null ? 'bg-yellow-200 text-[#1a1a1a]' : 'hover:bg-yellow-100 text-black'}`}
                       onClick={() => handleSelectCategory(null)}
                       aria-label="Todas as categorias"
                       tabIndex={0}
@@ -41,7 +41,7 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({ selectedCategory, handleS
                   {categories.map((cat) => (
                     <li key={cat}>
                       <button
-                        className={`w-full text-left px-3 py-2 rounded font-medium transition-colors ${selectedCategory === cat ? 'bg-yellow-400 text-blue-900' : 'hover:bg-yellow-100 text-blue-900'}`}
+                        className={`w-full text-left px-3 py-2 rounded font-medium transition-colors ${selectedCategory === cat ? 'bg-yellow-200 text-[#1a1a1a]' : 'hover:bg-yellow-100 text-black'}`}
                         onClick={() => handleSelectCategory(cat)}
                         aria-label={`Filtrar por ${cat}`}
                         tabIndex={0}

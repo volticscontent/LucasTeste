@@ -5,6 +5,7 @@ import React from 'react';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import { GetStaticProps } from 'next';
 import { getAllProducts } from '../../lib/sanity';
+import { urlFor } from '../../lib/sanityImage';
 
 interface Product {
   _id: string;
@@ -13,7 +14,7 @@ interface Product {
   image?: any;
   price: number;
   category: string;
-  description: string;
+  description: string | any;
 }
 
 interface ShopIndexProps {
@@ -31,7 +32,7 @@ const ShopIndex = ({ products }: ShopIndexProps) => {
     <>
       <Seo title="Produtos - Power House Brasil" description="Vitrine de produtos para ciclismo urbano." />
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8 text-blue-900">Produtos</h1>
+        <h1 className="text-3xl font-bold mb-8 text-black-900 font-roboto">Produtos</h1>
         {selectedCategory && (
           <div className="mb-6">
             <ButtonPrimary onClick={() => setSelectedCategory(null)} className="text-base px-6 py-3 rounded-xl">
@@ -57,9 +58,10 @@ const ShopIndex = ({ products }: ShopIndexProps) => {
                   <ProductCard
                     key={product._id}
                     title={product.title}
-                    image={product.image?.asset?.url || ''}
+                    image={product.image ? urlFor(product.image).width(400).height(300).url() : '/img/placeholder.jpg'}
                     price={product.price}
                     slug={product.slug.current}
+                    description={product.description}
                   />
                 ))
               )}
