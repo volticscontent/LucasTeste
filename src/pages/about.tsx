@@ -4,24 +4,29 @@ import Image from 'next/image';
 import Seo from '../components/Seo';
 import { motion } from 'framer-motion';
 
-const equipe = [
+const membros = [
   {
-    nome: 'Ana Silva',
-    cargo: 'Fundadora & CEO',
-    foto: '/img/team/ana.jpg',
+    nome: 'Hugo Prado',
+    cargo: 'Fundador & CEO',
+    foto: '/img/team/hugo.jpg',
   },
   {
-    nome: 'Carlos Souza',
-    cargo: 'CTO & Engenheiro de Produto',
+    nome: 'Maria Silva',
+    cargo: 'Head de Marketing',
+    foto: '/img/team/maria.jpg',
+  },
+  {
+    nome: 'Carlos Santos',
+    cargo: 'Especialista em Performance',
     foto: '/img/team/carlos.jpg',
   },
   {
-    nome: 'Marina Oliveira',
-    cargo: 'Marketing & Comunidade',
-    foto: '/img/team/marina.jpg',
+    nome: 'Ana Costa',
+    cargo: 'Nutricionista Esportiva',
+    foto: '/img/team/ana.jpg',
   },
   {
-    nome: 'João Pereira',
+    nome: 'João Oliveira',
     cargo: 'Designer & UX',
     foto: '/img/team/joao.jpg',
   },
@@ -29,7 +34,7 @@ const equipe = [
 
 const containerVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut', when: 'beforeChildren', staggerChildren: 0.12 } },
+  visible: { opacity: 1, y: 0 },
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -48,66 +53,82 @@ const About: NextPage = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], when: 'beforeChildren', staggerChildren: 0.12 }}
       >
         <motion.h1 className="text-3xl font-bold mb-6 text-center" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           Sobre a Power House Brasil
         </motion.h1>
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
-          <motion.div className="flex-1 text-lg text-neutral-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-            <p className="mb-4">
-              A <span className="font-bold text-blue-700">Power House Brasil</span> nasceu da paixão pelo ciclismo urbano e do desejo de transformar cidades em lugares mais humanos, sustentáveis e conectados. Somos uma comunidade, uma loja e um hub de conteúdo para quem acredita que a bicicleta é mais do que um meio de transporte: é um estilo de vida.
-            </p>
-            <p>
-              Nosso propósito é apoiar ciclistas urbanos com produtos de qualidade, informação relevante e iniciativas que promovam a mobilidade ativa. Acreditamos em inovação, sustentabilidade e no poder da coletividade para mudar realidades.
-            </p>
-          </motion.div>
+          <motion.p className="flex-1 text-lg text-neutral-700" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
+            A Power House Brasil nasceu da paixão
+            pelo ciclismo urbano e do desejo de transformar cidades em lugares mais humanos, sustentáveis e conectados. Somos uma comunidade, uma loja e um hub de conteúdo para
+            quem acredita que a bicicleta é mais do que um meio de transporte: é um estilo de
+            vida. Nossa missão é criar conteúdo
+            relevante e iniciativas que promovam a mobilidade ativa. Acreditamos em inovação,
+            comunidade e sustentabilidade.
+          </motion.p>
           <motion.div className="flex-1 flex justify-center" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7 }}>
             <Image
-              src="/img/about1.jpg"
-              alt="Equipe Power House Brasil pedalando na cidade"
-              width={400}
-              height={300}
-              className="rounded-lg shadow-lg object-cover"
+              src="/img/static/logo.png"
+              alt="Logo Power House Brasil"
+              width={320}
+              height={320}
+              className="rounded-2xl shadow-lg"
             />
           </motion.div>
         </div>
-        <div className="flex flex-col md:flex-row gap-8 items-center mb-10">
+        <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
           <motion.div className="flex-1 flex justify-center order-2 md:order-1" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.1 }}>
             <Image
-              src="/img/about2.jpg"
-              alt="Loja e comunidade Power House Brasil"
-              width={400}
-              height={300}
-              className="rounded-lg shadow-lg object-cover"
+              src="/img/static/logo.png"
+              alt="Ciclismo urbano"
+              width={320}
+              height={240}
+              className="rounded-2xl shadow-lg object-cover"
             />
           </motion.div>
-          <motion.div className="flex-1 text-lg text-neutral-700 order-1 md:order-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
-            <p>
-              Mais do que vender produtos, queremos inspirar pessoas a pedalar, compartilhar experiências e construir juntos uma cidade melhor. Seja bem-vindo à Power House Brasil!
-            </p>
-          </motion.div>
+          <motion.p className="flex-1 text-lg text-neutral-700 order-1 md:order-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
+            Queremos conectar pessoas, promover
+            experiências e construir juntos uma cidade melhor. Seja bem-vindo à Power House
+            Brasil!
+          </motion.p>
         </div>
       </motion.section>
-      {/* Equipe */}
-      <motion.section className="bg-neutral-50 py-12 px-4" variants={containerVariants} initial="hidden" animate="visible">
+      <motion.section 
+        className="bg-neutral-50 py-12 px-4" 
+        variants={containerVariants} 
+        initial="hidden" 
+        animate="visible"
+        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], when: 'beforeChildren', staggerChildren: 0.12 }}
+      >
         <div className="max-w-4xl mx-auto">
           <motion.h2 className="text-2xl font-bold mb-8 text-center" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            Nosso Time
+            Nossa Equipe
           </motion.h2>
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" variants={containerVariants}>
-            {equipe.map((membro) => (
-              <motion.div key={membro.nome} className="flex flex-col items-center bg-white rounded-lg shadow p-6 text-center" variants={cardVariants} whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }} whileFocus={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }} tabIndex={0} aria-label={`Card do membro ${membro.nome}`}>
-                <div className="relative w-28 h-28 mb-3">
-                  <Image
-                    src={membro.foto}
-                    alt={membro.nome}
-                    fill
-                    className="object-cover rounded-full border-4 border-blue-100"
-                    sizes="112px"
-                  />
-                </div>
-                <span className="font-bold text-lg">{membro.nome}</span>
-                <span className="text-blue-700 text-sm">{membro.cargo}</span>
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" 
+            variants={containerVariants}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], when: 'beforeChildren', staggerChildren: 0.12 }}
+          >
+            {membros.map((membro) => (
+              <motion.div
+                key={membro.nome}
+                className="flex flex-col items-center bg-white rounded-lg shadow p-6 text-center"
+                variants={cardVariants}
+                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }}
+                whileFocus={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }}
+                tabIndex={0}
+                aria-label={`Card do membro ${membro.nome}`}
+              >
+                <Image
+                  src={membro.foto}
+                  alt={membro.nome}
+                  width={120}
+                  height={120}
+                  className="rounded-full mb-4 object-cover"
+                />
+                <h3 className="font-semibold text-lg mb-1">{membro.nome}</h3>
+                <p className="text-neutral-600 text-sm">{membro.cargo}</p>
               </motion.div>
             ))}
           </motion.div>
