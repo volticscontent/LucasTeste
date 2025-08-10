@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 
 export const stripeServer = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-06-30.basil',
 });
 
 export const getStripeJs = async () => {
