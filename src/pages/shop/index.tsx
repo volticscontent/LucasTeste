@@ -31,7 +31,7 @@ const ShopIndex = ({ products }: ShopIndexProps) => {
   return (
     <>
       <Seo title="Produtos - Power House Brasil" description="Vitrine de produtos para ciclismo urbano." />
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-8 pt-20">
         <h1 className="text-3xl font-bold mb-8 text-black-900 font-roboto">Produtos</h1>
         {selectedCategory && (
           <div className="mb-6">

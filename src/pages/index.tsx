@@ -5,401 +5,391 @@ import Seo from '../components/Seo';
 import ButtonPrimary from '../components/ButtonPrimary';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const benefitCardVariants = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.7, type: "spring" as const } },
-  whileHover: { scale: 1.06, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.12)' },
+const cardVariants = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  whileHover: { y: -8 },
 };
 
 const sectionFade = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.8, type: "spring" as const } },
+  initial: { opacity: 0, y: 32 },
+  animate: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
 };
 
 const Home: NextPage = () => {
   return (
-    <>
+    <div className="relative">
       <Seo
         title="OCE Powerhouse | Somos campeões do mundo!"
         description="A OCE Powerhouse é referência em aulas personalizadas de ciclismo, saúde e performance. Conheça nossa história."
       />
-      {/* Hero com design mobile melhorado */}
-      <motion.section
-        className="relative w-full min-h-[100vh] sm:min-h-[90vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden rounded-none md:rounded-2xl shadow-none md:shadow-lg mb-8 md:mb-12"
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, type: 'spring' }}
+      
+      <Header />
+      
+      {/* Hero com background fixo */}
+      <section
+        className="fixed top-0 left-0 w-full h-screen z-0"
+        style={{
+          backgroundImage: "url('/img/static/hero.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center', // Desktop
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat'
+        }}
       >
-        {/* Desktop Layout */}
-        <div className="hidden lg:block relative w-full h-full">
+        {/* Versão mobile com controle de posicionamento */}
+        <div className="md:hidden absolute inset-0">
           <Image
             src="/img/static/hero.jpg"
             alt="OCE Powerhouse - Campeões do mundo"
             fill
-            className="object-cover object-center absolute inset-0 z-0 rounded-2xl"
+            className="object-cover object-center md:object-top lg:object-center"
             priority
             sizes="100vw"
+            style={{
+              objectPosition: 'center 50%' // Ajuste personalizado para mobile
+            }}
           />
-          <div className="absolute inset-0 bg-black/60 z-10 rounded-2xl" aria-hidden="true" />
+        </div>
+        {/* Overlay com título principal */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 flex items-center justify-center">
           <motion.div
-            className="relative z-20 w-full max-w-2xl mx-auto px-4 py-20 flex flex-col items-center text-center"
+            className="text-center text-white z-10 px-6 max-w-5xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, type: 'spring' }}
+            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-extrabold text-yellow-400 drop-shadow-lg mb-4"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[0.9] tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.7, type: 'spring' }}
+              transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
             >
-              Somos campeões do mundo!
+              Somos
+              <br />
+              <span className="text-yellow-400 italic font-light">campeões</span>
+              <br />
+              <span className="text-4xl md:text-6xl lg:text-7xl font-light">do mundo</span>
             </motion.h1>
+            
+            <motion.div
+              className="w-16 h-1 bg-yellow-400 mx-auto mb-8"
+              initial={{ width: 0 }}
+              animate={{ width: 64 }}
+              transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+            />
+            
             <motion.p
-              className="text-lg md:text-2xl text-white mb-4 max-w-xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.7, type: 'spring' }}
+              className="text-xl md:text-2xl font-light leading-relaxed opacity-90 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 0.9, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
             >
-              A OCE Powerhouse é referência em ciclismo, saúde e performance. Venha fazer parte dessa comunidade campeã!
+              Transformando atletas através de metodologia científica
+              <br className="hidden md:block" />
+              e excelência comprovada mundialmente
             </motion.p>
           </motion.div>
         </div>
+      </section>
 
-        {/* Tablet Layout */}
-        <div className="hidden md:block lg:hidden w-full h-full flex flex-col">
-          <div className="relative h-2/3 w-full">
-            <Image
-              src="/img/static/hero.jpg"
-              alt="OCE Powerhouse - Campeões do mundo"
-              fill
-              className="object-cover object-center rounded-t-2xl"
-              priority
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/70 rounded-t-2xl" aria-hidden="true" />
-          </div>
-          <motion.div
-            className="relative h-1/3 w-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 flex flex-col items-center justify-center px-8 py-6 rounded-b-2xl"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, type: 'spring' }}
-          >
-            <motion.h1
-              className="text-4xl font-extrabold text-black mb-3 text-center leading-tight font-roboto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.7, type: 'spring' }}
-            >
-              Somos campeões do mundo!
-            </motion.h1>
-            <motion.p
-              className="text-xl text-gray-900 mb-4 text-center max-w-2xl leading-relaxed font-roboto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.7, type: 'spring' }}
-            >
-              A OCE Powerhouse é referência em ciclismo, saúde e performance
-            </motion.p>
+      {/* Spacer para dar altura inicial igual ao viewport */}
+      <div className="h-screen w-full relative z-10"></div>
+
+      {/* Main content - Desliza por cima do hero fixo */}
+      <motion.main
+        className="relative bg-white z-20 min-h-screen"
+        initial={{ y: '100vh' }}
+        animate={{ y: 0 }}
+        transition={{ 
+          delay: 1.4, 
+          duration: 1.8, 
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
+        style={{
+          borderRadius: '24px 24px 0 0',
+          boxShadow: '0 -20px 40px rgba(0, 0, 0, 0.1)'
+        }}
+      >
+        {/* Seção de introdução */}
+        <motion.section
+          className="pt-20 pb-24 px-6"
+          variants={sectionFade}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              className="w-12 h-1 bg-yellow-400 mx-auto mb-8"
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 2.2, duration: 0.6 }}
+            />
+            
+            <motion.h2
+              className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.4, duration: 0.8, ease: "easeOut" }}
+            >
+              Junte-se à nossa
+              <br />
+              <span className="font-bold text-black">comunidade de campeões</span>
+            </motion.h2>
+            
+            <motion.p
+              className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.6, duration: 0.8, ease: "easeOut" }}
+            >
+              Metodologia científica personalizada que transforma paixão em resultados extraordinários através de tecnologia avançada e acompanhamento médico especializado.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.5, type: 'spring' }}
+              transition={{ delay: 2.8, duration: 0.6, ease: "easeOut" }}
             >
               <ButtonPrimary 
                 as="a" 
                 href="/planos" 
-                className="bg-black text-yellow-400 hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 px-8 py-3 text-lg font-semibold shadow-lg font-roboto"
+                className="bg-black text-white hover:bg-gray-900 transition-all duration-300 px-10 py-4 text-lg font-medium shadow-xl rounded-full border-0"
               >
-                Conheça nossos planos
+                Descobrir planos
               </ButtonPrimary>
             </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Mobile Layout - Vertical Stack */}
-        <div className="md:hidden w-full h-full flex flex-col">
-          {/* Image Section - Top */}
-          <div className="relative w-full h-1/2 min-h-[50vh]">
-            <Image
-              src="/img/static/hero.jpg"
-              alt="OCE Powerhouse - Campeões do mundo"
-              fill
-              className="object-cover object-center"
-              priority
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50" aria-hidden="true" />
-            
-            {/* Logo overlay on image */}
-            <motion.div
-              className="absolute top-6 left-4 right-4 flex items-center justify-center"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8, type: 'spring' }}
-            >
-            </motion.div>
           </div>
-          
-          {/* Content Section - Bottom */}
-          <motion.div
-            className="relative w-full h-1/2 min-h-[50vh] bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 flex flex-col items-center justify-center px-6 py-8"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, type: 'spring' }}
-          >
+        </motion.section>
+
+        {/* Benefícios/Diferenciais */}
+        <motion.section
+          className="py-24 px-6 bg-gray-50"
+          variants={sectionFade}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h3 className="text-2xl md:text-3xl font-light text-gray-900 mb-4">
+                Por que somos <span className="font-bold">diferentes</span>
+              </h3>
+              <div className="w-8 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+            
             <motion.div
-              className="text-center z-10 relative max-w-sm"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <motion.h1
-                className="text-3xl sm:text-4xl font-extrabold text-black mb-4 leading-tight font-roboto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+              <motion.div
+                className="group bg-white p-8 text-center border border-gray-100 hover:border-yellow-400/30 transition-all duration-300"
+                variants={cardVariants}
+                whileHover="whileHover"
               >
-                Somos
-                <br />
-                <span className="text-2xl sm:text-3xl bg-black text-yellow-400 px-3 py-1 rounded-lg inline-block transform -rotate-1 shadow-lg">campeões</span>
-                <br />
-                <span className="text-2xl sm:text-3xl">do mundo!</span>
-              </motion.h1>
-              
-              <motion.p
-                className="text-base sm:text-lg text-gray-900 mb-6 leading-relaxed font-roboto font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-              >
-                Referência em ciclismo, saúde e performance
-              </motion.p>
+                <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-400/20 transition-colors">
+                  <span className="text-3xl">🏆</span>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Resultados Mundiais</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Metodologia validada por conquistas em competições internacionais de alto nível</p>
+              </motion.div>
               
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9, duration: 0.5, type: 'spring' }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-white p-8 text-center border border-gray-100 hover:border-yellow-400/30 transition-all duration-300"
+                variants={cardVariants}
+                whileHover="whileHover"
               >
-                <ButtonPrimary 
-                  as="a" 
-                  href="/planos" 
-                  className="bg-black text-yellow-400 hover:bg-gray-900 transition-all duration-300 px-6 py-3 text-base font-semibold shadow-lg font-roboto rounded-lg border-2 border-black hover:border-gray-900 hover:shadow-xl"
-                >
-                  Ver Planos →
-                </ButtonPrimary>
+                <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-400/20 transition-colors">
+                  <span className="text-3xl">⚕️</span>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Ciência Aplicada</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Treinamento baseado em análise médica completa e medicina esportiva avançada</p>
+              </motion.div>
+              
+              <motion.div
+                className="group bg-white p-8 text-center border border-gray-100 hover:border-yellow-400/30 transition-all duration-300"
+                variants={cardVariants}
+                whileHover="whileHover"
+              >
+                <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-400/20 transition-colors">
+                  <span className="text-3xl">📊</span>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Tecnologia Integrada</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Plataforma digital para monitoramento em tempo real e análise de performance</p>
+              </motion.div>
+              
+              <motion.div
+                className="group bg-white p-8 text-center border border-gray-100 hover:border-yellow-400/30 transition-all duration-300"
+                variants={cardVariants}
+                whileHover="whileHover"
+              >
+                <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-400/20 transition-colors">
+                  <span className="text-3xl">🤝</span>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Comunidade Elite</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Networking exclusivo com atletas de alto rendimento e profissionais especializados</p>
               </motion.div>
             </motion.div>
+          </div>
+        </motion.section>
+
+        {/* História - Redesigned */}
+        <motion.section
+          className="py-24 px-6"
+          variants={sectionFade}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="w-8 h-1 bg-yellow-400 mb-8"></div>
+              <h3 className="text-3xl md:text-4xl font-light text-gray-900 mb-6 leading-tight">
+                Nossa <span className="font-bold">história</span>
+              </h3>
+              <div className="space-y-6 text-gray-600 leading-relaxed">
+                <p className="text-lg">
+                  Fundada por <strong className="text-gray-900">Hugo Hocevar</strong>, campeão mundial de ciclismo, 
+                  a OCE Powerhouse nasceu da visão de democratizar metodologias de treinamento de elite.
+                </p>
+                <p>
+                  Combinamos décadas de experiência competitiva com os mais recentes avanços em 
+                  ciência do esporte, medicina esportiva e tecnologia de análise de performance.
+                </p>
+                <p>
+                  Hoje, somos reconhecidos internacionalmente por transformar atletas amadores em 
+                  competidores de alto nível, sempre mantendo o foco na saúde e sustentabilidade do treinamento.
+                </p>
+              </div>
+              <div className="mt-10">
+                <Link 
+                  href="/about" 
+                  className="inline-flex items-center text-black font-medium hover:text-yellow-600 transition-colors group"
+                >
+                  Conhecer nossa jornada
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="relative">
+                <div className="absolute inset-0 bg-yellow-400/20 rounded-2xl transform rotate-3"></div>
+                <Image
+                  src="/img/static/logo.jpg"
+                  alt="OCE Powerhouse"
+                  width={600}
+                  height={400}
+                  className="relative rounded-2xl shadow-2xl w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Depoimentos - Simplified */}
+        <motion.section
+          className="py-24 px-6 bg-gray-50"
+          variants={sectionFade}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="w-8 h-1 bg-yellow-400 mx-auto mb-8"></div>
+            <h3 className="text-2xl md:text-3xl font-light text-gray-900 mb-16">
+              O que nossos <span className="font-bold">atletas</span> dizem
+            </h3>
             
-            {/* Background decorative elements */}
-            <motion.div
-              className="absolute top-4 right-4 w-12 h-12 bg-black/5 rounded-full"
-              initial={{ scale: 0, rotate: 0 }}
-              animate={{ scale: 1, rotate: 360 }}
-              transition={{ delay: 1.2, duration: 1, type: 'spring' }}
-            />
-            <motion.div
-              className="absolute bottom-4 left-4 w-10 h-10 bg-black/5 rounded-full"
-              initial={{ scale: 0, rotate: 0 }}
-              animate={{ scale: 1, rotate: -360 }}
-              transition={{ delay: 1.4, duration: 1, type: 'spring' }}
-            />
-            <motion.div
-              className="absolute top-1/3 left-4 w-6 h-6 bg-black/5 rounded-full"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 1.6, duration: 0.6, type: 'spring' }}
-            />
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Benefícios/Diferenciais */}
-      <motion.section
-        className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 mb-16 px-4"
-        variants={sectionFade}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.div
-          className="bg-white p-6 rounded-xl shadow-card flex flex-col items-center text-center cursor-pointer"
-          variants={benefitCardVariants}
-          whileHover="whileHover"
-        >
-          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mb-4">
-            <span className="text-2xl">🏆</span>
-          </div>
-          <h3 className="text-lg font-semibold text-primary mb-2">Campeões mundiais</h3>
-          <p className="text-black text-sm">Metodologia comprovada por resultados em competições internacionais</p>
-        </motion.div>
-        <motion.div
-          className="bg-white p-6 rounded-xl shadow-card flex flex-col items-center text-center cursor-pointer"
-          variants={benefitCardVariants}
-          whileHover="whileHover"
-        >
-          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mb-4">
-            <span className="text-2xl">👨‍⚕️</span>
-          </div>
-          <h3 className="text-lg font-semibold text-primary mb-2">Acompanhamento médico</h3>
-          <p className="text-black text-sm">Treinos personalizados com base em análise médica completa</p>
-        </motion.div>
-        <motion.div
-          className="bg-white p-6 rounded-xl shadow-card flex flex-col items-center text-center cursor-pointer"
-          variants={benefitCardVariants}
-          whileHover="whileHover"
-        >
-          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mb-4">
-            <span className="text-2xl">📱</span>
-          </div>
-          <h3 className="text-lg font-semibold text-primary mb-2">Tecnologia avançada</h3>
-          <p className="text-black text-sm">Plataforma digital integrada para acompanhamento em tempo real</p>
-        </motion.div>
-        <motion.div
-          className="bg-white p-6 rounded-xl shadow-card flex flex-col items-center text-center cursor-pointer"
-          variants={benefitCardVariants}
-          whileHover="whileHover"
-        >
-          <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mb-4">
-            <span className="text-2xl">🤝</span>
-          </div>
-          <h3 className="text-lg font-semibold text-primary mb-2">Comunidade forte</h3>
-          <p className="text-black text-sm">Faça parte de uma comunidade apaixonada por ciclismo e saúde</p>
-        </motion.div>
-      </motion.section>
-
-      {/* História */}
-      <motion.section
-        className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 mb-20 px-4"
-        variants={sectionFade}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="flex-1">
-          <Image
-            src="/img/static/logo.jpg"
-            alt="OCE Powerhouse"
-            width={500}
-            height={300}
-            className="rounded-xl shadow-lg w-full max-w-md mx-auto md:mx-0"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-        <div className="flex-1 text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-roboto">Nossa História</h2>
-          <p className="text-black mb-4 leading-relaxed">
-            A OCE Powerhouse nasceu da paixão pelo ciclismo e do sonho de levar atletas ao mais alto nível mundial. 
-            Fundada por Hugo Hocevar, campeão mundial de ciclismo, nossa metodologia combina ciência do esporte, 
-            medicina esportiva e tecnologia de ponta.
-          </p>
-          <p className="text-black mb-6 leading-relaxed">
-            Hoje, somos referência em treinamento personalizado, com resultados comprovados em competições 
-            internacionais e na transformação da vida de centenas de atletas.
-          </p>
-          <ButtonPrimary as="a" href="/about" className="inline-block font-roboto">
-            Saiba mais sobre nós
-          </ButtonPrimary>
-        </div>
-      </motion.section>
-
-      {/* Depoimentos */}
-      <motion.section
-        className="w-full max-w-6xl mx-auto mb-20 px-4"
-        variants={sectionFade}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center font-roboto">O que nossos atletas dizem</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.div
-            className="bg-white p-6 rounded-xl shadow-card"
-            variants={benefitCardVariants}
-            whileHover={{ scale: 1.02 }}
-          >
-            <p className="text-black mb-4 italic leading-relaxed">
-              "A OCE Powerhouse mudou completamente minha abordagem ao ciclismo. O acompanhamento personalizado 
-              e a metodologia científica me levaram a resultados que nunca imaginei ser possível."
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-lg font-bold text-black">M</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">Marina Santos</h4>
-                <p className="text-sm text-black">Ciclista amadora</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <motion.div
+                className="text-left"
+                variants={cardVariants}
+              >
+                <blockquote className="text-lg text-gray-700 mb-6 leading-relaxed italic">
+                  "A metodologia da OCE mudou completamente minha abordagem ao treinamento. 
+                  Os resultados foram além de todas as minhas expectativas."
+                </blockquote>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-lg font-bold text-black">M</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Marina Santos</h4>
+                    <p className="text-sm text-gray-600">Ciclista Competitiva</p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                className="text-left"
+                variants={cardVariants}
+              >
+                <blockquote className="text-lg text-gray-700 mb-6 leading-relaxed italic">
+                  "O acompanhamento científico e a atenção aos detalhes fazem toda a diferença. 
+                  É treinamento de outro nível."
+                </blockquote>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-lg font-bold text-black">R</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Roberto Silva</h4>
+                    <p className="text-sm text-gray-600">Triatleta Profissional</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-          <motion.div
-            className="bg-white p-6 rounded-xl shadow-card"
-            variants={benefitCardVariants}
-            whileHover={{ scale: 1.02 }}
-          >
-            <p className="text-black mb-4 italic leading-relaxed">
-              "Treinar com a OCE é uma experiência única. A atenção aos detalhes, o suporte médico e 
-              a tecnologia avançada fazem toda a diferença no meu desenvolvimento como atleta."
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-lg font-bold text-black">R</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary">Roberto Silva</h4>
-                <p className="text-sm text-black">Triatleta profissional</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+          </div>
+        </motion.section>
 
-      {/* Parceiros/Patrocinadores */}
-      <motion.section
-        className="w-full max-w-6xl mx-auto mb-20 px-4 flex flex-col items-center"
-        variants={sectionFade}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center font-roboto">Nossos Parceiros</h2>
-        <div className="flex flex-wrap gap-8 items-center justify-center">
-          <motion.a 
-            href="https://alquimiadasaude.com.br" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-card hover:shadow-lg transition-all duration-300 border border-gray-100"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Image 
-              src="/img/static/logo-preta.png" 
-              alt="Alquimia da Saúde" 
-              width={48} 
-              height={24} 
-              className="object-contain" 
-            />
-            <span className="text-primary font-semibold font-roboto">Alquimia da Saúde</span>
-          </motion.a>
-        </div>
-      </motion.section>
-      
-      {/* CTA para Planos */}
-      <motion.section
-        className="w-full flex flex-col items-center justify-center mb-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, type: 'spring' }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <ButtonPrimary as="a" href="/planos" className="text-lg px-8 py-4 rounded-xl shadow-lg">
-          Conheça nossos planos
-        </ButtonPrimary>
-      </motion.section>
-    </>
+        {/* Parceiros - Minimalist */}
+        <motion.section
+          className="py-16 px-6"
+          variants={sectionFade}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-sm text-gray-500 mb-8 uppercase tracking-wider">Parceiros</p>
+            <motion.a 
+              href="https://alquimiadasaude.com.br" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-4 opacity-60 hover:opacity-100 transition-opacity duration-300"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Image 
+                src="/img/static/logo-preta.png" 
+                alt="Alquimia da Saúde" 
+                width={48} 
+                height={24} 
+                className="object-contain" 
+              />
+              <span className="text-gray-600 font-medium">Alquimia da Saúde</span>
+            </motion.a>
+          </div>
+        </motion.section>
+
+        <Footer />
+      </motion.main>
+    </div>
   );
 };
 

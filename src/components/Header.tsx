@@ -50,7 +50,7 @@ const Header = () => {
   // Função para determinar qual logo usar
   const getLogoSrc = () => {
     if (isHomePage) {
-      // Na página principal, sempre usar a logo.png
+      // Na página principal, sempre usar a logo.png (mantém as cores originais)
       return "/img/static/logo.png";
     } else {
       // Nas outras páginas, mudar conforme o scroll
@@ -72,8 +72,10 @@ const Header = () => {
   // Função para determinar as classes de cor dos links
   const getLinkClasses = () => {
     if (isHomePage) {
-      // Na página principal, sempre branco com hover amarelo
-      return 'text-white hover:text-yellow-400 focus:ring-offset-yellow-400';
+      // Na página principal, sempre branco com hover amarelo e melhor visibilidade
+      return scrolled 
+        ? 'text-white hover:text-yellow-400 focus:ring-offset-yellow-400'
+        : 'text-white hover:text-yellow-400 focus:ring-offset-yellow-400 drop-shadow-lg';
     } else {
       // Nas outras páginas, mudar conforme o scroll
       return scrolled 
@@ -85,7 +87,9 @@ const Header = () => {
   return (
     <header
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled || isHomePage
+        isHomePage && !scrolled
+          ? 'bg-transparent' // Transparente na home sem scroll
+          : scrolled || isHomePage
           ? 'bg-[#000000] border-yellow-400' 
           : 'bg-transparent'
       } h-16`}
@@ -188,7 +192,9 @@ const Header = () => {
                 <ShoppingCart className="w-6 h-6" aria-hidden="true" />
                 {cartItems.length > 0 && (
                   <span className={`absolute -top-2 -right-2 text-xs rounded-full px-2 py-0.5 font-bold border ${
-                    scrolled || isHomePage
+                    isHomePage && !scrolled
+                      ? 'bg-yellow-400 text-black border-yellow-400 shadow-lg' // Sombra para destaque na home transparente
+                      : scrolled || isHomePage
                       ? 'bg-yellow-400 text-black border-yellow-400' 
                       : 'bg-white text-gray-800 border-gray-800'
                   }`}>
@@ -202,7 +208,9 @@ const Header = () => {
         {/* Mobile menu button */}
         <button
           className={`md:hidden flex items-center justify-center w-10 h-10 rounded focus:outline-none ${
-            scrolled || isHomePage
+            isHomePage && !scrolled
+              ? 'text-white' // Melhor visibilidade na home
+              : scrolled || isHomePage
               ? 'text-white' 
               : 'text-black focus:ring-offset-transparent'
           }`}

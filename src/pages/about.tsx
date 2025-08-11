@@ -49,7 +49,7 @@ const About: NextPage = () => {
         description="Conheça a história, missão e equipe da Power House Brasil, referência em ciclismo urbano."
       />
       <motion.section
-        className="max-w-4xl mx-auto py-12 px-4"
+        className="max-w-4xl mt-20 mx-auto py-12 px-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
