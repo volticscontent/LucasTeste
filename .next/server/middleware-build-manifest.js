@@ -33,10 +33,25 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/checkout.js"
     ],
+    "/planos": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/planos.js"
+    ],
+    "/powercamps": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/powercamps.js"
+    ],
     "/shop": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/shop.js"
+    ],
+    "/shop/[slug]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/shop/[slug].js"
     ]
   },
   "ampFirstPages": []

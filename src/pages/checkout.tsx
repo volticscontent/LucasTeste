@@ -19,6 +19,8 @@ const CheckoutPage: NextPage = () => {
     setError(null);
 
     try {
+      console.log('🚀 Iniciando checkout com', cartItems.length, 'itens');
+      
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,12 +34,19 @@ const CheckoutPage: NextPage = () => {
       }
       
       if (data.url) {
+        console.log('✅ Redirecionando para Mercado Pago:', {
+          url: data.url,
+          total: data.total,
+          external_reference: data.external_reference
+        });
+        
         // Redireciona para o Mercado Pago
         window.location.href = data.url;
       } else {
         throw new Error('URL de pagamento não encontrada');
       }
     } catch (err) {
+      console.error('❌ Erro no checkout:', err);
       setError(err instanceof Error ? err.message : 'Erro desconhecido');
       setIsLoading(false);
     }

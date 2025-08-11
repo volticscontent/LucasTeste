@@ -14,8 +14,8 @@ Crie/edite o arquivo `.env.local` na raiz do projeto:
 
 ```bash
 # Configuração do Mercado Pago
-MERCADO_PAGO_ACCESS_TOKEN=seu_access_token_aqui
-NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY=sua_public_key_aqui
+MERCADO_PAGO_ACCESS_TOKEN=APP_USR-834693252311167-072414-601382743fe246f2f08174abd919e166-2579741776
+NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY=APP_USR-56f8a6e5-0db5-436e-8498-168f6c82592c
 
 # URLs do ambiente
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
